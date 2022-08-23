@@ -1,5 +1,6 @@
 import { ToolbarSettingsModel } from '@syncfusion/ej2-react-pdfviewer';
 import { EmitType } from '@syncfusion/ej2-base';
+import { Tooltip } from '@syncfusion/ej2-popups';
 import {
   PdfViewerComponent,
   AnnotationMouseoverEventArgs,
@@ -73,7 +74,7 @@ export function annotationMouseOver(
       let tooltipElement: any =
         document.getElementsByClassName('e-tooltip-wrap')[0];
       tooltipElement.style.top = args.Y + 100 + 'px';
-      tooltipElement.style.left = args.X + 250 + 'px';
+      tooltipElement.style.left = args.X + 'px';
     }
   };
 

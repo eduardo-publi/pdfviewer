@@ -1,5 +1,4 @@
 import { createRoot } from 'react-dom/client';
-import '@syncfusion/ej2/bootstrap5-dark.css';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   AllowedInteraction,
