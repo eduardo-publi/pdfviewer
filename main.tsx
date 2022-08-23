@@ -25,12 +25,11 @@ import {
   registerLicense,
 } from '@syncfusion/ej2-base';
 import { toolbarSettings } from './helper';
-// Carrega as linguagens dos componentes syncfusion.
 registerLicense(
   'ORg4AjUWIQA/Gnt2VVhiQlFadVlJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRdkJiWH1dcHdUQWBZUEI='
 );
 enableRipple(true);
-
+// Carrega as linguagens dos componentes syncfusion.
 L10n.load(ptBR);
 setCulture('pt');
 
