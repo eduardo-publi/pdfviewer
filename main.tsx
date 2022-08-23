@@ -31,6 +31,7 @@ import {
   annotationMouseOver,
   annotationMouseLeave,
 } from './helper';
+import { LoadBase64PDF } from './base64document';
 registerLicense(
   'ORg4AjUWIQA/Gnt2VVhiQlFadVlJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRdkJiWH1dcHdUQWBZUEI='
 );
@@ -40,29 +41,24 @@ L10n.load(ptBR);
 setCulture('pt');
 
 export function PdfViewerFunctionComponent() {
-  const [viewer, setViewer] = useState<PdfViewerComponent>();
-  const viewerRef = useRef<PdfViewerComponent>();
-
+  let viewer: PdfViewerComponent;
   const tooltip: Tooltip = new Tooltip({
     mouseTrail: true,
     opensOn: 'Custom',
   });
 
-  function loadRef() {
-    viewerRef.current = viewer;
-  }
-
   useEffect(() => {
-    loadRef();
-  }, [viewer]);
+    viewer.load(LoadBase64PDF(), null);
+  }, []);
 
   return (
     <div>
       {/* Render the PDF Viewer */}
       <PdfViewerComponent
-        ref={(scope) => setViewer(scope)}
+        ref={(scope) => {
+          viewer = scope;
+        }}
         id="container"
-        documentPath="PDF_Succinctly.pdf"
         serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer"
         documentLoadFailed={(args: LoadFailedEventArgs) => {
           console.log('Falha no Load', args);
@@ -77,8 +73,7 @@ export function PdfViewerFunctionComponent() {
         isAnnotationToolbarOpen
         hyperlinkOpenState="NewTab"
         dateTimeFormat={'yyyy-MM-dd HH:mm:ss'}
-        theme={'bootstrap5-dark'}
-        annotationMouseover={annotationMouseOver(viewer, tooltip)}
+        annotationMouseover={annotationMouseOver(tooltip)}
         annotationMouseLeave={annotationMouseLeave(tooltip)}
         stickyNotesSettings={{
           allowedInteractions: [
@@ -115,5 +110,5 @@ export function PdfViewerFunctionComponent() {
   );
 }
 
-const root = createRoot(document.getElementById('sample'));
+const root = createRoot(document.getElementById('root'));
 root.render(<PdfViewerFunctionComponent />);
